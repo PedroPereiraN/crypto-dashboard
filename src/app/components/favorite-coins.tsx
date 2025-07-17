@@ -6,6 +6,10 @@ import { CoingeckoCryptoCoinMarketData } from "@/utils/types";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { numberMask } from "@/utils/masks";
 import { cn } from "@/lib/utils";
+import { Star, WifiOff } from 'lucide-react';
+import { Skeleton } from "@/components/ui/skeleton";
+
+const MAX_FAVORITE = 3
 
 export function FavoriteCoins() {
 
@@ -18,9 +22,40 @@ export function FavoriteCoins() {
     data: coinsMarketValues,
   } = useCoinsMarketValues([])
 
-  if (isPendingCoinsMarketValues) return "Carregando...";
+  if (isPendingCoinsMarketValues) {
+    return (
+      <div className="grid grid-cols-3 gap-4">
+        <Skeleton className={
+          cn(
+            "w-full",
+            "h-56"
+          )
+        }/>
+        <Skeleton className={
+          cn(
+            "w-full",
+            "h-56"
+          )
+        }/>
+        <Skeleton className={
+          cn(
+            "w-full",
+            "h-56"
+          )
+        }/>
+      </div>
+    )
+  }
 
-  if (errorsCoinsMarketValues) return "Oops, ocorreu um erro: " + errorsCoinsMarketValues.message;
+  if (errorsCoinsMarketValues) {
+    return (
+      <div className="flex flex-col items-center justify-center h-56 gap-3">
+        <WifiOff className="w-20 h-20"/>
+        <h1 className="text-3xl font-bold">Oops!</h1>
+        <p>Could not load your favorite coins. Please try again later.</p>
+      </div>
+    )
+  }
 
   const favs = coinsMarketValues.filter((coin: CoingeckoCryptoCoinMarketData) => favoritesStore.favorites.includes(coin.id.toLowerCase()))
 
@@ -57,6 +92,23 @@ export function FavoriteCoins() {
               </p>
             </CardContent>
           </Card>
+        ))
+      }
+      {
+        new Array(MAX_FAVORITE - favs.length >=0 ? MAX_FAVORITE - favs.length : 0).fill(null).map((_, index) => (
+          <Card key={index} className={
+          cn(
+            "w-full",
+            "h-56"
+          )
+        }>
+          <CardContent className="flex gap-3 items-center justify-center w-full h-full">
+            <Star />
+            <p>Add a new cryptocurrency to favorites</p>
+          </CardContent>
+        </Card>
+
+
         ))
       }
     </div>
