@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 export function FavoriteCoins() {
 
   const favoritesStore = useFavoritesStore()
-
+  //this query is already executed in another component, I only need the data that the query returns
+  //so I'm passing an empty array so the query is not redone
   const {
     isPending: isPendingCoinsMarketValues,
     error: errorsCoinsMarketValues,
@@ -46,13 +47,13 @@ export function FavoriteCoins() {
               )
             }>
               <p>
-              <strong>Price:</strong> R$ { numberMask(fav.current_price, 2) }
+              <strong>Price:</strong> $ { numberMask(fav.current_price, 2) }
               </p>
               <p>
-              <strong>Market cap:</strong> R$ { numberMask(fav.market_cap, 2) }
+              <strong>Market cap:</strong> $ { numberMask(fav.market_cap, 2) }
               </p>
               <p>
-              <strong>24h Volume:</strong> R$ { numberMask(fav.total_volume, 2) }
+              <strong>24h Volume:</strong> $ { numberMask(fav.total_volume, 2) }
               </p>
             </CardContent>
           </Card>

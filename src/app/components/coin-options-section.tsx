@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { useMainChartStore } from "@/stores/main-chart-items";
 import { useCoinsMarketValues } from "@/hooks/coins-market-values"
+import { Button } from "@/components/ui/button";
 
 const imageLoader = ({
   src,
@@ -90,6 +91,9 @@ const mainChartStore = useMainChartStore()
     }
   }
 
+  const isFavorite = (coinId: string) => !!favoriteStore.favorites.includes(coinId.toLowerCase())
+  const isHidden = (coinId: string) => !!mainChartStore.itemsToHide.includes(coinId.toLowerCase())
+
   return (
     <section>
       <h1 className={cn("text-3xl", "font-bold")}>Cryptocurrencies</h1>
@@ -132,30 +136,40 @@ const mainChartStore = useMainChartStore()
       </div>
 
       <div className="flex flex-col gap-1">
-        <button
+        <Button
           type="button"
-          className="cursor-pointer"
-          title={favoriteStore.favorites.includes(coin.id.toLowerCase()) ? "Unfavorite" : "favorite"}
+          className={
+            cn(
+              "cursor-pointer",
+              "bg-yellow-300",
+              "hover:bg-yellow-300/60",
+              "rounded-full",
+              "w-8",
+              "h-8"
+            )
+          }
+          title={ isFavorite(coin.id) ? "Unfavorite" : "favorite"}
           onClick={() => removeOrAddToFavorites(coin.id)}
         >
         {
-          favoriteStore.favorites.includes(coin.id.toLowerCase()) ?
+          isFavorite(coin.id) ?
             <StarOff />
             : <Star />
         }
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
-          className="cursor-pointer"
-          title={mainChartStore.itemsToHide.includes(coin.id.toLowerCase()) ? "Select" : "Unselect"}
+          variant="secondary"
+          className="cursor-pointer rounded-full w-8 h-8"
+          title={ isHidden(coin.id) ? "Select" : "Unselect"}
           onClick={() => removeOrAddToMainChart(coin.id)}
         >
         {
-          mainChartStore.itemsToHide.includes(coin.id.toLowerCase()) ?
+          isHidden(coin.id) ?
             <CirclePlus />
               : <CircleMinus />
         }
-        </button>
+        </Button>
       </div>
     </div>
         ))}

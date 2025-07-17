@@ -1,4 +1,7 @@
-export const numberMask = (value: string | number, decimals: number) => {
+export const numberMask = (
+  value: string | number,
+  decimals: number,
+): string => {
   let num: number;
 
   if (typeof value === "string") {
@@ -18,7 +21,7 @@ export const numberMask = (value: string | number, decimals: number) => {
     return "";
   }
 
-  return num.toLocaleString("pt-BR", {
+  return num.toLocaleString("en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   });
