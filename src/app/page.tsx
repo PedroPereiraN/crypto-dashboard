@@ -3,8 +3,8 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ChevronRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CoinsOptionsSection } from "@/components/coin-options-section";
-import { FavoriteCoinsDiv } from "@/components/favorite-coins-div";
+import { CoinsOptionsSection } from "./components/coin-options-section";
+import { FavoriteCoins } from "./components/favorite-coins";
 
 export default function Dashboard() {
   return (
@@ -24,21 +24,20 @@ export default function Dashboard() {
 
         <section className="w-full">
           <h2 className={cn("text-2xl", "font-bold", "my-10")}>
-            Moedas favoritadas (Max: 3)
+            Favorite cryptocurrencies (Max: 3)
           </h2>
 
-          <FavoriteCoinsDiv />
+          <FavoriteCoins />
         </section>
       </div>
 
       <section className="w-2/5 flex flex-col justify-between">
         <div className="mb-10">
           <h2 className={cn("text-2xl", "font-bold")}>
-            Consulte nosso asistente virtual
+            Consult our virtual assistant
           </h2>
           <p className="text-muted-foreground text-sm">
-            Utilize nosso assistente virtual para analisar e encontrar
-            tendências do mercado de crypto moedas
+            Use our virtual assistant to analyze and identify cryptocurrency market trends
           </p>
         </div>
         <Card
@@ -49,7 +48,8 @@ export default function Dashboard() {
             " p-4",
             "flex",
             "flex-col",
-            "justify-between",
+            "justify-end",
+            "gap-6"
           )}
         >
           <div className="flex flex-col gap-4">

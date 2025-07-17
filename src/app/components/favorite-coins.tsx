@@ -3,11 +3,11 @@
 import { useFavoritesStore } from "@/stores/favorites-store"
 import { useCoinsMarketValues } from "@/hooks/coins-market-values"
 import { CoingeckoCryptoCoinMarketData } from "@/utils/types";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { numberMask } from "@/utils/masks";
 import { cn } from "@/lib/utils";
 
-export function FavoriteCoinsDiv() {
+export function FavoriteCoins() {
 
   const favoritesStore = useFavoritesStore()
 
@@ -34,7 +34,7 @@ export function FavoriteCoinsDiv() {
               </CardTitle>
 
               <CardDescription>
-                Informações adicionais da moeda: { fav.name }
+                Additional information about the cryptocurrency: { fav.name }
               </CardDescription>
             </CardHeader>
 
@@ -46,13 +46,13 @@ export function FavoriteCoinsDiv() {
               )
             }>
               <p>
-              <strong>Cotação:</strong> R$ { numberMask(fav.current_price, 2) }
+              <strong>Price:</strong> R$ { numberMask(fav.current_price, 2) }
               </p>
               <p>
-              <strong>Capitalização de mercado:</strong> R$ { numberMask(fav.market_cap, 2) }
+              <strong>Market cap:</strong> R$ { numberMask(fav.market_cap, 2) }
               </p>
               <p>
-              <strong>Volume 24h:</strong> R$ { numberMask(fav.total_volume, 2) }
+              <strong>24h Volume:</strong> R$ { numberMask(fav.total_volume, 2) }
               </p>
             </CardContent>
           </Card>

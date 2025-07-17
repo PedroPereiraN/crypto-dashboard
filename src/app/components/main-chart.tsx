@@ -12,7 +12,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 export function MainChart({ chartData } : { chartData?: { coinSymbol: string, currentBrlValue: number }[]}) {
@@ -29,9 +29,9 @@ export function MainChart({ chartData } : { chartData?: { coinSymbol: string, cu
       className={cn("bg-transparent", "border-none", "text-white", "h-fit")}
     >
       <CardHeader>
-        <CardTitle>Cotação</CardTitle>
+        <CardTitle>Prices</CardTitle>
         <CardDescription>
-          Cotação das moedas selecionadas.
+          Prices of selected cryptocurrencies
         </CardDescription>
       </CardHeader>
       <CardContent className="h-72">
@@ -51,7 +51,7 @@ export function MainChart({ chartData } : { chartData?: { coinSymbol: string, cu
               cursor={false}
               content={<ChartTooltipContent />}
             />
-            <Bar dataKey="currentBrlValue" name="Cotação" fill="var(--color-coins)" radius={8} />
+            <Bar dataKey="currentBrlValue" name="Price" fill="var(--color-coins)" radius={8} />
           </BarChart>
         </ChartContainer>
       </CardContent>

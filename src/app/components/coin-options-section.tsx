@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getCoinsList } from "@/services/queries";
 import { cn } from "@/lib/utils";
-import { MainChart } from "@/components/main-chart";
+import { MainChart } from "./main-chart";
 import { CoingeckoCryptoCoinInfo, CoingeckoCryptoCoinMarketData } from "@/utils/types";
 import * as React from 'react';
 import { Star, CircleMinus, CirclePlus, StarOff } from "lucide-react";
@@ -92,7 +92,7 @@ const mainChartStore = useMainChartStore()
 
   return (
     <section>
-      <h1 className={cn("text-3xl", "font-bold")}>Moedas</h1>
+      <h1 className={cn("text-3xl", "font-bold")}>Cryptocurrencies</h1>
 
       <div
         className={cn("flex", "flex-wrap", "gap-2", "items-center", "my-10", "relative")}
@@ -102,7 +102,7 @@ const mainChartStore = useMainChartStore()
           key={index}
       className={cn(
         "p-4",
-        "w-60",
+        "w-52",
         "h-20",
         "flex",
         "items-center",
@@ -135,7 +135,7 @@ const mainChartStore = useMainChartStore()
         <button
           type="button"
           className="cursor-pointer"
-          title="Favoritar"
+          title={favoriteStore.favorites.includes(coin.id.toLowerCase()) ? "Unfavorite" : "favorite"}
           onClick={() => removeOrAddToFavorites(coin.id)}
         >
         {
@@ -147,7 +147,7 @@ const mainChartStore = useMainChartStore()
         <button
           type="button"
           className="cursor-pointer"
-          title="Desmarcar"
+          title={mainChartStore.itemsToHide.includes(coin.id.toLowerCase()) ? "Select" : "Unselect"}
           onClick={() => removeOrAddToMainChart(coin.id)}
         >
         {
