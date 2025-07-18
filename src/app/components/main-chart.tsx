@@ -15,8 +15,11 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export function MainChart({ chartData } : { chartData?: { coinSymbol: string, currentBrlValue: number }[]}) {
-
+export function MainChart({
+  chartData,
+}: {
+  chartData?: { coinSymbol: string; currentBrlValue: number }[];
+}) {
   const chartConfig = {
     coins: {
       label: "coins",
@@ -30,13 +33,11 @@ export function MainChart({ chartData } : { chartData?: { coinSymbol: string, cu
     >
       <CardHeader>
         <CardTitle>Prices</CardTitle>
-        <CardDescription>
-          Prices of selected cryptocurrencies
-        </CardDescription>
+        <CardDescription>Prices of selected cryptocurrencies</CardDescription>
       </CardHeader>
-      <CardContent className="h-72">
+      <CardContent className="h-60">
         <ChartContainer
-          className={cn("text-white", "h-8/12", "w-full")}
+          className={cn("text-white", "h-full", "w-full")}
           config={chartConfig}
         >
           <BarChart accessibilityLayer data={chartData}>
@@ -47,11 +48,13 @@ export function MainChart({ chartData } : { chartData?: { coinSymbol: string, cu
               tickMargin={10}
               axisLine={false}
             />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent />}
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+            <Bar
+              dataKey="currentBrlValue"
+              name="Price"
+              fill="var(--color-coins)"
+              radius={8}
             />
-            <Bar dataKey="currentBrlValue" name="Price" fill="var(--color-coins)" radius={8} />
           </BarChart>
         </ChartContainer>
       </CardContent>

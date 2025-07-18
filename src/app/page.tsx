@@ -37,7 +37,8 @@ export default function Dashboard() {
             Consult our virtual assistant
           </h2>
           <p className="text-muted-foreground text-sm">
-            Use our virtual assistant to analyze and identify cryptocurrency market trends
+            Use our virtual assistant to analyze and identify cryptocurrency
+            market trends
           </p>
         </div>
         <Card
@@ -49,7 +50,7 @@ export default function Dashboard() {
             "flex",
             "flex-col",
             "justify-end",
-            "gap-6"
+            "gap-6",
           )}
         >
           <div className="flex flex-col gap-4">
