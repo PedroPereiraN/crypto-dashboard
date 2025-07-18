@@ -110,7 +110,9 @@ export function CoinsOptionsSection() {
 
   return (
     <section>
-      <h1 className={cn("text-3xl", "font-bold")}>Cryptocurrencies</h1>
+      <h1 className={cn("text-3xl", "font-bold", "text-center md:text-start")}>
+        Cryptocurrencies
+      </h1>
 
       {isPendingCoins ? (
         <div
@@ -119,6 +121,7 @@ export function CoinsOptionsSection() {
             "flex-wrap",
             "gap-2",
             "items-center",
+            "justify-center md:justify-start",
             "my-10",
             "relative",
           )}
@@ -139,6 +142,7 @@ export function CoinsOptionsSection() {
             "flex-wrap",
             "gap-2",
             "items-center",
+            "justify-center md:justify-start",
             "my-10",
             "relative",
           )}

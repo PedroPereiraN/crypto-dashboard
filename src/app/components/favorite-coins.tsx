@@ -47,7 +47,7 @@ export function FavoriteCoins() {
   );
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
       {favs.map((fav: CoingeckoCryptoCoinMarketData, index) => (
         <Card key={index}>
           <CardHeader>
@@ -58,7 +58,7 @@ export function FavoriteCoins() {
             </CardDescription>
           </CardHeader>
 
-          <CardContent className={cn("flex", "flex-col", "gap-1")}>
+          <CardContent className={cn("flex", "flex-col", "gap-1", "h-full")}>
             <p>
               <strong>Price:</strong> $ {numberMask(fav.current_price, 2)}
             </p>
@@ -76,7 +76,10 @@ export function FavoriteCoins() {
       )
         .fill(null)
         .map((_, index) => (
-          <Card key={index} className={cn("w-full", "h-56")}>
+          <Card
+            key={index}
+            className={cn("w-full", favs.length > 0 ? "h-full" : "h-56")}
+          >
             <CardContent className="flex gap-3 items-center justify-center w-full h-full">
               <Star />
               <p>Add a new cryptocurrency to favorites</p>

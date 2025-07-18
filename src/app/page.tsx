@@ -10,9 +10,10 @@ export default function Dashboard() {
   return (
     <main
       className={cn(
-        "p-10",
+        "p-4 md:p-10",
         "bg-background",
         "flex",
+        "flex-col lg:flex-row",
         "justify-around",
         "gap-10",
         "dark",
