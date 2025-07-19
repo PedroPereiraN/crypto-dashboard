@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ChevronRightIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CoinsList } from "./components/coins-list"
+import { CoinsList } from "./components/coins-list";
 import { FavoriteCoins } from "./components/favorite-coins";
 import { MainChartLoader } from "./components/main-chart-loader";
 
@@ -23,13 +23,15 @@ export default function Dashboard() {
     >
       <div>
         <section>
-      <h1 className={cn("text-3xl", "font-bold", "text-center md:text-start")}>
-        Cryptocurrencies
-      </h1>
-      <CoinsList />
+          <h1
+            className={cn("text-3xl", "font-bold", "text-center md:text-start")}
+          >
+            Cryptocurrencies
+          </h1>
+          <CoinsList />
 
           <MainChartLoader />
-      </section>
+        </section>
 
         <section className="w-full">
           <h2 className={cn("text-2xl", "font-bold", "my-10")}>
@@ -37,7 +39,6 @@ export default function Dashboard() {
           </h2>
 
           <FavoriteCoins />
-
         </section>
       </div>
 

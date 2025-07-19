@@ -31,11 +31,9 @@ export function FavoriteCoins() {
   if (isPendingCoinsMarketValues) {
     return (
       <div className="grid grid-cols-3 gap-4">
-      {
-        Array.from({length: 3}).map((_, index) => (
+        {Array.from({ length: 3 }).map((_, index) => (
           <Skeleton key={index} className={cn("w-full", "h-56")} />
-        ))
-      }
+        ))}
       </div>
     );
   }
@@ -73,20 +71,20 @@ export function FavoriteCoins() {
           </CardContent>
         </Card>
       ))}
-      {Array.from(
-        { length: MAX_FAVORITE - favs.length >= 0 ? MAX_FAVORITE - favs.length : 0}
-      )
-        .map((_, index) => (
-          <Card
-            key={index}
-            className={cn("w-full", favs.length > 0 ? "h-full" : "h-56")}
-          >
-            <CardContent className="flex gap-3 items-center justify-center w-full h-full">
-              <Star />
-              <p>Add a new cryptocurrency to favorites</p>
-            </CardContent>
-          </Card>
-        ))}
+      {Array.from({
+        length:
+          MAX_FAVORITE - favs.length >= 0 ? MAX_FAVORITE - favs.length : 0,
+      }).map((_, index) => (
+        <Card
+          key={index}
+          className={cn("w-full", favs.length > 0 ? "h-full" : "h-56")}
+        >
+          <CardContent className="flex gap-3 items-center justify-center w-full h-full">
+            <Star />
+            <p>Add a new cryptocurrency to favorites</p>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }

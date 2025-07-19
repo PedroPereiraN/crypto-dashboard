@@ -1,27 +1,18 @@
-'use client';
+"use client";
 
-import { useCoinsSection } from "@/hooks/coins-section"
-import { cn } from "@/lib/utils"
-import { Skeleton } from "@/components/ui/skeleton"
-import { RequestError } from "@/components/request-error"
+import { useCoinsSection } from "@/hooks/coins-section";
+import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
+import { RequestError } from "@/components/request-error";
 import { CoingeckoCryptoCoinInfo } from "@/utils/types";
 import { CoinCard } from "./coin-card";
 
 export function CoinsList() {
+  const { coinsQuery, mainChartStore, favoriteStore } = useCoinsSection();
 
-  const {
-    coinsQuery,
-    mainChartStore,
-    favoriteStore
-  } = useCoinsSection()
+  const { isPending, data, error } = coinsQuery;
 
-  const {
-    isPending,
-    data,
-    error
-  } = coinsQuery
-
-const removeOrAddToMainChart = (id: string) => {
+  const removeOrAddToMainChart = (id: string) => {
     const isHidden = mainChartStore.itemsToHide.includes(id.toLowerCase());
     if (isHidden) {
       mainChartStore.setItemsToHide(
@@ -62,7 +53,7 @@ const removeOrAddToMainChart = (id: string) => {
 
   return (
     <>
-      {isPending? (
+      {isPending ? (
         <div
           className={cn(
             "flex",
@@ -97,20 +88,18 @@ const removeOrAddToMainChart = (id: string) => {
         >
           {data?.map((coin: CoingeckoCryptoCoinInfo, index: number) => (
             <CoinCard
-            key={index}
-              {
-                ...{
-                  coin,
-                  isFavorite,
-                  isHidden,
-                  removeOrAddToFavorites,
-                  removeOrAddToMainChart
-                }
-              }
+              key={index}
+              {...{
+                coin,
+                isFavorite,
+                isHidden,
+                removeOrAddToFavorites,
+                removeOrAddToMainChart,
+              }}
             />
           ))}
         </div>
       )}
     </>
-  )
+  );
 }

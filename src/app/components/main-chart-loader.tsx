@@ -7,16 +7,9 @@ import { RequestError } from "@/components/request-error";
 import { useCoinsSection } from "@/hooks/coins-section";
 
 export function MainChartLoader() {
+  const { chartData, marketValuesQuery } = useCoinsSection();
 
-  const {
-    chartData,
-    marketValuesQuery
-  } = useCoinsSection()
-
-  const {
-    isPending,
-    error
-  } = marketValuesQuery
+  const { isPending, error } = marketValuesQuery;
 
   return (
     <>
@@ -27,6 +20,6 @@ export function MainChartLoader() {
       ) : (
         <MainChart chartData={chartData} />
       )}
-      </>
+    </>
   );
 }

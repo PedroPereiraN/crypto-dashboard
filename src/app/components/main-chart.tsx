@@ -17,8 +17,8 @@ import { cn } from "@/lib/utils";
 
 export type ChartData = {
   coinSymbol: string;
-  currentValue: number
-}
+  currentValue: number;
+};
 
 export function MainChart({ ...props }: { chartData?: ChartData[] }) {
   const chartConfig = {
