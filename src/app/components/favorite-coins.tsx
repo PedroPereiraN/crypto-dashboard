@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { numberMask } from "@/utils/masks";
 import { cn } from "@/lib/utils";
-import { Star, WifiOff } from "lucide-react";
+import { Star } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RequestError } from "@/components/request-error";
 
@@ -31,9 +31,11 @@ export function FavoriteCoins() {
   if (isPendingCoinsMarketValues) {
     return (
       <div className="grid grid-cols-3 gap-4">
-        <Skeleton className={cn("w-full", "h-56")} />
-        <Skeleton className={cn("w-full", "h-56")} />
-        <Skeleton className={cn("w-full", "h-56")} />
+      {
+        Array.from({length: 3}).map((_, index) => (
+          <Skeleton key={index} className={cn("w-full", "h-56")} />
+        ))
+      }
       </div>
     );
   }
@@ -71,10 +73,9 @@ export function FavoriteCoins() {
           </CardContent>
         </Card>
       ))}
-      {new Array(
-        MAX_FAVORITE - favs.length >= 0 ? MAX_FAVORITE - favs.length : 0,
+      {Array.from(
+        { length: MAX_FAVORITE - favs.length >= 0 ? MAX_FAVORITE - favs.length : 0}
       )
-        .fill(null)
         .map((_, index) => (
           <Card
             key={index}

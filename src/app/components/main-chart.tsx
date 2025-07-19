@@ -15,11 +15,12 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export function MainChart({
-  chartData,
-}: {
-  chartData?: { coinSymbol: string; currentBrlValue: number }[];
-}) {
+export type ChartData = {
+  coinSymbol: string;
+  currentValue: number
+}
+
+export function MainChart({ ...props }: { chartData?: ChartData[] }) {
   const chartConfig = {
     coins: {
       label: "coins",
@@ -40,7 +41,7 @@ export function MainChart({
           className={cn("text-white", "h-full", "w-full")}
           config={chartConfig}
         >
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart accessibilityLayer data={props.chartData}>
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="coinSymbol"
@@ -50,7 +51,7 @@ export function MainChart({
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <Bar
-              dataKey="currentBrlValue"
+              dataKey="currentValue"
               name="Price"
               fill="var(--color-coins)"
               radius={8}
