@@ -17,11 +17,10 @@ export default function Dashboard() {
         "flex-col lg:flex-row",
         "justify-around",
         "gap-10",
-        "dark",
         "text-primary",
       )}
     >
-      <div>
+      <div className="md:w-4/5">
         <section>
           <h1
             className={cn("text-3xl", "font-bold", "text-center md:text-start")}
@@ -42,7 +41,7 @@ export default function Dashboard() {
         </section>
       </div>
 
-      <section className="w-2/5 flex flex-col justify-between">
+      <section className="flex flex-col justify-between">
         <div className="mb-10">
           <h2 className={cn("text-2xl", "font-bold")}>
             Consult our virtual assistant

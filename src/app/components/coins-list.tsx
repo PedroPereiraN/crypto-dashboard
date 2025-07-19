@@ -1,6 +1,7 @@
 "use client";
 
 import { useCoinsSection } from "@/hooks/coins-section";
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Skeleton } from "@/components/ui/skeleton";
 import { RequestError } from "@/components/request-error";
@@ -36,14 +37,18 @@ export function CoinsList() {
           (item: string) => !(item == id.toLowerCase()),
         ),
       );
-    }
-
-    if (!isFavorite && favoriteStore.favorites.length <= 2) {
+    } else if (!isFavorite && favoriteStore.favorites.length <= 2) {
       favoriteStore.setFavorites([
         ...favoriteStore.favorites,
         id.toLowerCase(),
       ]);
+    } else if (favoriteStore.favorites.length > 2) {
+      toast("Limit reached", {
+        description: "The favorites limit is 3.",
+      })
     }
+
+
   };
 
   const isFavorite = (coinId: string) =>
