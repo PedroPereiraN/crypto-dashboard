@@ -2,8 +2,8 @@ import axios from "axios";
 import { ResponseType } from "axios";
 
 export type Instance = {
-  baseURL: string;
-  headers: {
+  baseURL?: string;
+  headers?: {
     authorization?: string;
     accept?: string;
   };
@@ -17,8 +17,8 @@ function axiosClientInstance({ baseURL, headers, responseType }: Instance) {
   });
 
   api.interceptors.request.use((config) => {
-    config.headers.Authorization = headers.authorization;
-    config.headers.Accept = headers.accept;
+    config.headers.Authorization = headers?.authorization;
+    config.headers.Accept = headers?.accept;
 
     return config;
   });
@@ -32,3 +32,5 @@ export const geckoClient = axiosClientInstance({
     accept: "application/json",
   },
 });
+
+export const appClient = axiosClientInstance({});
