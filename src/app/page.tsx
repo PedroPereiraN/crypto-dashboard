@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { CoinsList } from "./components/coins-list";
 import { FavoriteCoins } from "./components/favorite-coins";
 import { MainChartLoader } from "./components/main-chart-loader";
-import { ChatbotCard } from "./components/chatbot-card";
+import { ChatbotContent } from "./components/chatbot-content";
 
 export default function Dashboard() {
   return (
@@ -15,7 +15,7 @@ export default function Dashboard() {
         "justify-around",
         "gap-10",
         "text-primary",
-        "min-h-screen"
+        "h-fit"
       )}
     >
       <div className="md:w-4/5">
@@ -39,7 +39,7 @@ export default function Dashboard() {
         </section>
       </div>
 
-      <section className="lg:w-3/5 flex flex-col justify-between max-h-full">
+      <section className="lg:w-3/5 flex flex-col h-full relative">
         <div className="mb-10">
           <h2 className={cn("text-2xl", "font-bold")}>
             Consult our virtual assistant
@@ -49,7 +49,7 @@ export default function Dashboard() {
             market trends
           </p>
         </div>
-          <ChatbotCard />
+        <ChatbotContent />
       </section>
     </main>
   );
