@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { ChevronRightIcon, Loader, Scroll } from "lucide-react";
+import { ChevronRightIcon, Dot, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { appClient } from "@/lib/axios";
 import * as React from 'react';
@@ -13,21 +13,6 @@ export type Message = {
   role: 'user' | 'assistant';
 }
 
-const systemPrompt = `
-You are Alfred, a cryptocurrency expert assistant. Follow these rules strictly:
-1. Speak ONLY about cryptocurrencies (Bitcoin, Ethereum, altcoins, NFTs, blockchain technology, etc.)
-2. If asked about other topics, politely explain you specialize in cryptocurrencies
-3. When natural in conversation, reveal your name is Alfred (e.g., "As your crypto assistant Alfred, I recommend...")
-4. Never break character - if pressed about other topics, respond: "I specialize in cryptocurrency analysis. Would you like insights about Bitcoin or Ethereum markets?"
-5. Maintain a professional yet friendly tone
-
-Example responses:
-- "The current Bitcoin trend shows..."
-- "I'm Alfred, your crypto assistant. That topic is outside my expertise, but I can explain how blockchain works!"
-- "As Alfred, I must decline - but I'm happy to discuss crypto wallets or DeFi protocols."
-- "Interesting question! While I focus on cryptocurrencies, I can tell you how NFT technology relates to that... "
-`;
-
 export async function makeRequest(message: string) {
 const response = await appClient.post<{response: string}, { data: { response: string }} >('/api/chatbot', {
     message,
@@ -36,7 +21,6 @@ const response = await appClient.post<{response: string}, { data: { response: st
   return response
 }
 
-
 export function Chatbot() {
   const [messages, setMessages] = React.useState<Message[]>([])
   const [isLoading, setIsLoading] = React.useState(false)
@@ -44,9 +28,9 @@ export function Chatbot() {
 
   const formRef = React.useRef<HTMLFormElement>(null)
 
-  React.useEffect(() => {
-    makeRequest(systemPrompt)
-  }, [])
+  const addMessage = (newMessage: Message) => {
+    setMessages((prev) => [...prev, newMessage].slice(-20));
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
@@ -57,26 +41,14 @@ export function Chatbot() {
   }
 
 
-  setMessages((prev: Message[]) => [
-    ...prev,
-    {
-      content: inputValue,
-      role: 'user'
-    }
-  ])
+  addMessage({ content: inputValue, role: 'user' });
 
   setInputValue('');
   setIsLoading(true)
 
   const response = await makeRequest(inputValue)
 
-  setMessages((prev: Message[]) => [
-    ...prev,
-    {
-      content: response.data.response,
-      role: 'assistant'
-    }
-  ])
+  addMessage({ content: response.data.response, role: 'assistant' });
 
   setIsLoading(false)
 }
@@ -99,7 +71,7 @@ const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
 )}>
     <div className="flex-1 overflow-hidden">
     <ScrollArea className="h-full w-full">
-    <CardContent className="flex flex-col gap-4 justify-end">
+    <CardContent className="flex flex-col gap-4">
     {
       messages.map((message: Message, index) => (
         message.role == 'user' ? (
@@ -114,11 +86,13 @@ const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       ))
     }
     {
-      Array.from({ length: 20 }).map((_, index) => (
-<div className="bg-primary border-none rounded-lg p-4 w-full text-black" key={index}>
-            <p>TESTEEEEEEEE</p>
-          </div>
-      ))
+      isLoading ?
+      <div className="bg-secondary border-none rounded-lg p-4 w-fit flex items-end">
+        <Dot className="animate-bounce [animation-delay:-0.3s]"/>
+        <Dot className="animate-bounce [animation-delay:-0.15s]"/>
+        <Dot className="animate-bounce"/>
+      </div>
+        : null
     }
     </CardContent>
     </ScrollArea>
