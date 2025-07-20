@@ -1,9 +1,8 @@
 import { cn } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
 import { CoinsList } from "./components/coins-list";
 import { FavoriteCoins } from "./components/favorite-coins";
 import { MainChartLoader } from "./components/main-chart-loader";
-import { ChatbotContent } from "./components/chatbot-content";
+import { ChatbotCard } from "./components/chatbot-card";
 
 export default function Dashboard() {
   return (
@@ -16,6 +15,7 @@ export default function Dashboard() {
         "justify-around",
         "gap-10",
         "text-primary",
+        "min-h-screen"
       )}
     >
       <div className="md:w-4/5">
@@ -39,7 +39,7 @@ export default function Dashboard() {
         </section>
       </div>
 
-      <section className="w-3/5 flex flex-col justify-between">
+      <section className="lg:w-3/5 flex flex-col justify-between max-h-full">
         <div className="mb-10">
           <h2 className={cn("text-2xl", "font-bold")}>
             Consult our virtual assistant
@@ -49,16 +49,7 @@ export default function Dashboard() {
             market trends
           </p>
         </div>
-        <Card
-          className={cn(
-            "h-full",
-            "bg-transparent",
-            "w-full",
-            "p-4",
-          )}
-        >
-          <ChatbotContent />
-        </Card>
+          <ChatbotCard />
       </section>
     </main>
   );
