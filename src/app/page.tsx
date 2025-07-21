@@ -15,7 +15,7 @@ export default function Dashboard() {
         "justify-around",
         "gap-10",
         "text-primary",
-        "h-fit"
+        "h-fit",
       )}
     >
       <div className="md:w-4/5">

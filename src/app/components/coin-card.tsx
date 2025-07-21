@@ -42,7 +42,7 @@ export function CoinCard({
           "bg-primary",
           "text-black",
           "rounded-lg",
-          "z-10"
+          "z-10",
         )}
       >
         <div

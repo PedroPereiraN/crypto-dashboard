@@ -45,10 +45,8 @@ export function CoinsList() {
     } else if (favoriteStore.favorites.length > 2) {
       toast("Limit reached", {
         description: "The favorites limit is 3.",
-      })
+      });
     }
-
-
   };
 
   const isFavorite = (coinId: string) =>

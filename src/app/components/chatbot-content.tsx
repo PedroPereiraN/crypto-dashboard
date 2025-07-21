@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
 import { Chatbot } from "./chatbot";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
-import * as React from 'react';
-import { X } from 'lucide-react'
+import * as React from "react";
+import { X } from "lucide-react";
 
 export function ChatbotContent() {
-  const [isVisible, setIsVisible] = React.useState(false)
+  const [isVisible, setIsVisible] = React.useState(false);
 
   return (
     <>
@@ -31,14 +31,16 @@ export function ChatbotContent() {
             className="fixed lg:hidden inset-0 z-40 bg-background p-4 flex flex-col"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-2xl font-bold">
-                Assistant
-              </h2>
-              <Button className="cursor-pointer" variant="ghost" onClick={() => setIsVisible(false)}>
+              <h2 className="text-2xl font-bold">Assistant</h2>
+              <Button
+                className="cursor-pointer"
+                variant="ghost"
+                onClick={() => setIsVisible(false)}
+              >
                 <X />
-            </Button>
+              </Button>
             </div>
-              <Chatbot />
+            <Chatbot />
           </motion.div>
         )}
       </AnimatePresence>
@@ -48,5 +50,5 @@ export function ChatbotContent() {
         <Chatbot />
       </div>
     </>
-  )
+  );
 }
