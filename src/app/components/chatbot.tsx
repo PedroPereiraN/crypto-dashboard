@@ -67,7 +67,7 @@ const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
   "bg-transparent",
   "flex",
   "flex-col",
-  "h-screen",
+  "h-11/12 lg:h-screen",
 )}>
     <div className="flex-1 overflow-hidden">
     <ScrollArea className="h-full w-full">

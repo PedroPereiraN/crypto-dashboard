@@ -28,9 +28,9 @@ export function ChatbotContent() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="fixed lg:hidden inset-0 z-40 bg-background p-4 h-screen flex flex-col"
+            className="fixed lg:hidden inset-0 z-40 bg-background p-4 flex flex-col"
           >
-            <div className="w-full mb-4 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between">
               <h2 className="text-2xl font-bold">
                 Assistant
               </h2>
@@ -38,7 +38,7 @@ export function ChatbotContent() {
                 <X />
             </Button>
             </div>
-            <Chatbot />
+              <Chatbot />
           </motion.div>
         )}
       </AnimatePresence>
